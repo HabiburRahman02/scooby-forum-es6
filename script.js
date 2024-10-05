@@ -33,7 +33,7 @@ const displayAllPosts = (posts) => {
                   <p>View: ${view_count}</p>
                   <p>time: ${posted_time}</p>
                 </div>
-                <button class="btn">Mark</button>
+                <button onclick="markAsRead('${title}','${view_count}')" class="btn">Mark</button>
               </div>
             </div>
           </div>
@@ -46,6 +46,19 @@ const displayAllPosts = (posts) => {
 const handleSearch = () => {
     const searchText = document.getElementById('searchPosts').value;
     loadAllPosts(searchText);
+}
+
+const markAsRead = (title, view_count) => {
+    console.log(title, view_count);
+    const markAsReadContainer = document.getElementById('markAsReadContainer');
+    const div = document.createElement('div');
+    div.innerHTML = `
+              <div class="bg-white p-4 flex justify-between rounded-lg">
+                <p>${title}</p>
+                <p>${view_count}</p>
+              </div>
+    `
+    markAsReadContainer.appendChild(div);
 }
 
 
