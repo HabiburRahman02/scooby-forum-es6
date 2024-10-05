@@ -7,6 +7,7 @@ const loadAllPosts = async (category) => {
 
 
 const displayAllPosts = (posts) => {
+    document.getElementById('post-container').innerHTML = ''
     const postContainer = document.getElementById('post-container');
     posts.forEach(post => {
         console.log(post);
@@ -23,7 +24,7 @@ const displayAllPosts = (posts) => {
             <div class="md:w-5/6 space-y-4">
               <div class="flex gap-6">
                 <p># ${category}</p>
-                <p>${author.name}</p>
+                <p>Name: ${author.name}</p>
               </div>
               <h4 class="text-3xl font-bold">${title}</h4>
               <p class="border-b-2 border-dashed pb-6">${description}</p>
@@ -33,7 +34,7 @@ const displayAllPosts = (posts) => {
                   <p>View: ${view_count}</p>
                   <p>time: ${posted_time}</p>
                 </div>
-                <button onclick="markAsRead('${title}','${view_count}')" class="btn">Mark</button>
+                <button onclick="markAsRead('${title}','${view_count}')" class="btn btn-primary">Mark</button>
               </div>
             </div>
           </div>
@@ -49,7 +50,9 @@ const handleSearch = () => {
 }
 
 const markAsRead = (title, view_count) => {
-    console.log(title, view_count);
+    let markAsReadCounter = document.getElementById('markAsReadCounter').innerText;
+    markAsReadCounter++;
+    document.getElementById('markAsReadCounter').innerText = markAsReadCounter
     const markAsReadContainer = document.getElementById('markAsReadContainer');
     const div = document.createElement('div');
     div.innerHTML = `
